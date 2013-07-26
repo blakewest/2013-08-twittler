@@ -1,0 +1,35 @@
+.tweetDiv {
+	background-color: white;
+	border-top: solid 1px gray;
+	border-bottom: solid 1px gray;
+	border-radius: 5px;
+	margin: 10px;
+}
+
+.tweetHeader {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	float: left;
+	font-family: sans-serif, Helvetica;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.tweetHeader:hover {
+	color: blue;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.tweetMsg {
+	clear: both;
+	font-family: sans-serif, Helvetica;
+}
+
+.timeStamp {
+	float: right;
+	color: gray;
+	font-size: 11px;
+	font-family: Helvetica;
+}
+
