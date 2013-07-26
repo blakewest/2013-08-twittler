@@ -3,6 +3,7 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <script>                                                        
@@ -11,36 +12,54 @@
         var $body = $('body');                                      
         $body.html('');
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + "created at: " + tweet.created_at);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+        // var index = streams.home.length - 1;
+        // while(index >= 0){
+        //   var tweet = streams.home[index];
+        //   var $tweet = $('<div></div>');
+        //   $tweet.text('@' + tweet.user + ': ' + tweet.message + "created at: " + tweet.created_at);
+        //   $tweet.appendTo($body);
+        //   index -= 1;
+        // }
 
         var prevLength = streams.home.length;
+        var $tweetDiv = $('<div class="tweetDiv"></div>');
+        var $tweetHeader = $("<div class='tweetHeader'></div>")
+        var $tweetTime = $("<div class='timeStamp'></div>")
+        var $tweetMsg = $("<p class='tweetMsg'></p>")
 
-        function refresh() {
-          //initialize length of streams.home.
-          //get current length of streams.home.
+        function displayTweets() {
           var currentLength = streams.home.length;
           //disp from current length to prev length
           for (var i = currentLength-1; i > prevLength; i--) {
-            var tweet = streams.home[i]
-            var $tweetDiv = $('<div></div>');
-            var $tweetTime = $("<p class='timeStamp'></p>")
-            $tweetTime.text(tweet.created_at);
-            $tweetDiv.text('@' + tweet.user + ": " + tweet.message);
+            var tweet = streams.home[i]                       //grab tweet object
+            
+            $tweetTime.text(tweet.created_at);                //adding in content
+            $tweetHeader.text(tweet.user);
+            $tweetMsg.text(tweet.message);
+
+            $tweetHeader.appendTo($tweetDiv);                 //creating whole tweet
             $tweetTime.appendTo($tweetDiv);
-            $tweetDiv.appendTo($body);
+            $tweetMsg.appendTo($tweetDiv);
+
+            $tweetDiv.appendTo($body);                        //adding to page
           }
           prevLength = currentLength;             //update length of index
+        }
+        displayTweets();
 
-          //window.setTimeout(refresh, 3000);
+        function refresh() {
+          displayTweets();
+          window.setTimeout(refresh, 3000);
         }
         refresh();
+
+        function getUsrTimeline() {
+          $(".tweetHeader").on(click, function(){
+            //clicking should display tweets from streams.users.username[array of tweets]
+          })
+          
+
+        }
 
       });
 
