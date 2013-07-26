@@ -19,6 +19,7 @@
 	color: blue;
 	cursor: pointer;
 	cursor: hand;
+	text-decoration: underline;
 }
 
 .tweetMsg {

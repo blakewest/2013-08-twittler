@@ -22,16 +22,18 @@
         // }
 
         var prevLength = streams.home.length;
-        var $tweetDiv = $('<div class="tweetDiv"></div>');
-        var $tweetHeader = $("<div class='tweetHeader'></div>")
-        var $tweetTime = $("<div class='timeStamp'></div>")
-        var $tweetMsg = $("<p class='tweetMsg'></p>")
+       
 
         function displayTweets() {
           var currentLength = streams.home.length;
           //disp from current length to prev length
           for (var i = currentLength-1; i > prevLength; i--) {
             var tweet = streams.home[i]                       //grab tweet object
+
+            var $tweetDiv = $('<div class="tweetDiv"></div>');
+            var $tweetHeader = $("<div class='tweetHeader'></div>")
+            var $tweetTime = $("<div class='timeStamp'></div>")
+            var $tweetMsg = $("<p class='tweetMsg'></p>")
             
             $tweetTime.text(tweet.created_at);                //adding in content
             $tweetHeader.text(tweet.user);
