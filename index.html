@@ -22,35 +22,39 @@
         // }
 
         var prevLength = streams.home.length;
-       
 
-        function displayTweets() {
-          var currentLength = streams.home.length;
-          //disp from current length to prev length
-          for (var i = currentLength-1; i > prevLength; i--) {
-            var tweet = streams.home[i]                       //grab tweet object
-
+        function createTweet(tweetObject) {
             var $tweetDiv = $('<div class="tweetDiv"></div>');
             var $tweetHeader = $("<div class='tweetHeader'></div>")
             var $tweetTime = $("<div class='timeStamp'></div>")
             var $tweetMsg = $("<p class='tweetMsg'></p>")
             
-            $tweetTime.text(tweet.created_at);                //adding in content
-            $tweetHeader.text(tweet.user);
-            $tweetMsg.text(tweet.message);
+            $tweetTime.text(tweetObject.created_at);                //adding in content
+            $tweetHeader.text(tweetObject.user);
+            $tweetMsg.text(tweetObject.message);
 
             $tweetHeader.appendTo($tweetDiv);                 //creating whole tweet
             $tweetTime.appendTo($tweetDiv);
             $tweetMsg.appendTo($tweetDiv);
 
-            $tweetDiv.appendTo($body);                        //adding to page
+            return $tweetDiv;
+        }
+       
+
+        function displayNewTweets() {
+          var currentLength = streams.home.length;
+          //disp from current length to prev length
+          for (var i = currentLength-1; i > prevLength; i--) {
+
+            var tweetDiv = createTweet(streams.home[i]);     //Create tweet object
+            tweetDiv.appendTo($body);                        //adding to page
           }
           prevLength = currentLength;             //update length of index
         }
-        displayTweets();
+        displayNewTweets();
 
         function refresh() {
-          displayTweets();
+          displayNewTweets();
           window.setTimeout(refresh, 3000);
         }
         refresh();
@@ -58,6 +62,8 @@
         function getUsrTimeline() {
           $(".tweetHeader").on(click, function(){
             //clicking should display tweets from streams.users.username[array of tweets]
+
+
           })
           
 
