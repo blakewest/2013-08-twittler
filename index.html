@@ -10,7 +10,7 @@
                                                                     
       $(document).ready(function(){                                  
         var $body = $('body');                                      
-        $body.html('');
+        //$body.html('');
 
         // var index = streams.home.length - 1;
         // while(index >= 0){
@@ -23,11 +23,11 @@
 
         var prevLength = streams.home.length;
 
-        function createTweet(tweetObject) {
+        var createTweet = function (tweetObject) {
             var $tweetDiv = $('<div class="tweetDiv"></div>');
-            var $tweetHeader = $("<div class='tweetHeader'></div>")
-            var $tweetTime = $("<div class='timeStamp'></div>")
-            var $tweetMsg = $("<p class='tweetMsg'></p>")
+            var $tweetHeader = $('<div class="tweetHeader"></div>')
+            var $tweetTime = $('<div class="timeStamp"></div>')
+            var $tweetMsg = $('<p class="tweetMsg"></p>')
             
             $tweetTime.text(tweetObject.created_at);                //adding in content
             $tweetHeader.text(tweetObject.user);
@@ -59,21 +59,35 @@
         }
         refresh();
 
-        function getUsrTimeline() {
-          $(".tweetHeader").on(click, function(){
-            //clicking should display tweets from streams.users.username[array of tweets]
+        console.log(streams.users.sharksforcheap[0]);
 
+        
+        $("body").on("click", ".tweetHeader", function(event) {
+          var username = $(this).text();
+          console.log(username);
+          console.log("i got clicked");
+          //$body.html("");
 
-          })
+          for (var i = 0; i < streams.users[username].length; i++) {
+            var usrTweetDiv = createTweet(streams.users[username][i]);
+            usrTweetDiv.appendTo($body);
+          }
+        });
+
+        
           
-
-        }
-
       });
 
     </script>
 
+    <h1>Twittler!</h1>
+
+    <input class = "newTweet" type="text">
+
   </body>
+  <script>
+    
+  </script>
 </html>
 
 
