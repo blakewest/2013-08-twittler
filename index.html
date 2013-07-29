@@ -21,7 +21,9 @@
         //   index -= 1;
         // }
 
-        var prevLength = streams.home.length;
+        var prevLength = 0;
+        var iprevLength = 0;
+        
 
         var createTweet = function (tweetObject) {
             var $tweetDiv = $('<div class="tweetDiv"></div>');
@@ -43,34 +45,70 @@
 
         function displayNewTweets() {
           var currentLength = streams.home.length;
+          console.log("i'm getting called!");
+          console.log(currentLength);
           //disp from current length to prev length
           for (var i = currentLength-1; i > prevLength; i--) {
 
             var tweetDiv = createTweet(streams.home[i]);     //Create tweet object
-            tweetDiv.appendTo($body);                        //adding to page
+              tweetDiv.prependTo($(".tweetArea"));                        //adding to page
           }
           prevLength = currentLength;             //update length of index
         }
-        displayNewTweets();
+
+        // function displayMyTweets() {
+        //   if (streams.home.MyUserNameIsFuckingAwesome != undefined) {
+        //     var icurrentLength = streams.home.MyUserNameIsFuckingAwesome.length;
+        //   }else {
+        //     var icurrentLength = 0;
+        //     }    //disp from current length to prev length
+        //   console.log(icurrentLength);
+   
+        //   for (var i = icurrentLength-1; i > iprevLength; i--) {
+
+        //   var itweetDiv = createTweet(streams.home.MyUserNameIsFuckingAwesome[i]);     //Create tweet object
+        //   itweetDiv.prependTo($(".myTweets"));                        //adding to page
+        //   }
+        //   iprevLength = icurrentLength;             //update length of index
+        // }
 
         function refresh() {
           displayNewTweets();
-          window.setTimeout(refresh, 3000);
+          // if(streams.home.MyUserNameIsFuckingAwesome != undefined){
+          //   displayMyTweets();
+          // }
+          //displayMyTweets();
+          window.setTimeout(refresh, 7000);
         }
         refresh();
 
-        console.log(streams.users.sharksforcheap[0]);
+
+
+        $(".tweetSubmit").on("click", function() {
+          //set default value for visitor
+          //grab value of text area
+          //send to Write Tweet function
+          var msg = $(".newTweet").val();
+          writeTweet(msg);
+          $(".newTweet").val("");
+          $(".tweetArea").html("");
+          displayNewTweets();
+          console.log("submit button got clicked!")
+          console.log(visitor);
+        })
+        
 
         
+
         $("body").on("click", ".tweetHeader", function(event) {
           var username = $(this).text();
           console.log(username);
           console.log("i got clicked");
-          //$body.html("");
+          $(".tweetArea").html("");
 
           for (var i = 0; i < streams.users[username].length; i++) {
             var usrTweetDiv = createTweet(streams.users[username][i]);
-            usrTweetDiv.appendTo($body);
+            usrTweetDiv.prependTo($(".tweetArea"));
           }
         });
 
@@ -79,14 +117,28 @@
       });
 
     </script>
+    <!--<div class="title">
+      <h1>Tweeterator</h1>
+    </div>-->
 
-    <h1>Twittler!</h1>
+    <div class="composeTweet">
+      <!--<h3 id="callToAction">Tell The Robot What To Tweet</h3>-->
+      <textarea class = "newTweet" cols = "40" rows = "4" wrap = "hard" maxlength = "140" placeholder="Compose new tweet..."></textarea>
+      <button class="tweetSubmit">Tweet Robot! Tweet!</button>
+    </div>
 
-    <input class = "newTweet" type="text">
+    <div class = "content">
+      <div class = "robotArea">
+        <div class="tweetArea"></div>
+      </div>
+
+      <!--<div class="myTweets"></div>-->
+    </div>
 
   </body>
   <script>
-    
+   var visitor = "MyUserNameIsFuckingAwesome"; 
+   
   </script>
 </html>
 

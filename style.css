@@ -1,17 +1,82 @@
-.tweetDiv {
-	background-color: white;
-	border-top: solid 1px gray;
-	border-bottom: solid 1px gray;
-	border-radius: 5px;
-	margin: 10px;
+body {
+	background-image: url("metroplex.jpg");
+	background-size: 100% auto;
+}
+
+.content {
+	width: 85%;
+	margin: 38px auto;
+}
+
+h1 {
+	font-size: 48px;
+	font-family: sans-serif;
+	color: #0000AA;
+}
+
+.title {
+	width: 250px;
+	position: absolute;
+	top: 10px;
+}
+
+.newTweet {
+	font-family: monospace, sans-serif;
+	color: #00CC00;
+	font-size: 14px;
+	background-color: black
+}
+
+.tweetSubmit {
+	font-family: monospace;
+	font-size: 13px;
+}
+
+textarea.newTweet::-webkit-input-placeholder {
+	color:#008800;
+}
+
+#callToAction {
+	font-family: cursive, monospace;
+}
+
+.composeTweet {
+	width: 350px;
+	position: absolute;
+	top: 214px;
+}
+
+.robotArea {
+	background-image: url("robot-no-whitespace.png");
+	width: 630px;
+	height: 690px;
+	margin: 0px auto;
+	overflow: auto;
+}
+
+.tweetArea {
+	width: 424px;
+	height: 250px;
+	margin: 185px auto 0;
+	overflow: scroll;
+}
+#tweetContentHeader {
+	margin: 0 auto;
 	width: 30%;
+}
+.tweetDiv {
+	background-color: black;
+	border-bottom: solid 1px gray;
+	margin: 5px auto;
+	
 }
 
 .tweetHeader {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	float: left;
-	font-family: sans-serif, Helvetica;
+	color: #00CC00;
+	font-family: monospace, sans-serif, Helvetica;
 	font-weight: bold;
 	font-size: 14px;
 }
@@ -24,14 +89,22 @@
 }
 
 .tweetMsg {
+	color: #00CC00;
 	clear: both;
-	font-family: sans-serif, Helvetica;
+	font-family: monospace, sans-serif;
 }
 
 .timeStamp {
+	margin-top: 5px;
+	margin-bottom: 5px;
 	float: right;
 	color: gray;
 	font-size: 11px;
-	font-family: Helvetica;
+	font-family: monospace, Helvetica;
 }
+
+.newTweet {
+	float: left;
+}
+
 
